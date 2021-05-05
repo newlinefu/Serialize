@@ -115,7 +115,7 @@ namespace XmlConverter.xml_formating_with_only_attr
         [XmlIgnore]
         public int ImagePseudocolorPhase
         {
-            get => _imagePseudocolorPhase;
+            get => int.Parse(_serializedAttributes["image_pseudocolor_phase"].Value);
             set
             {
                 _serializedAttributes["image_pseudocolor_phase"].Value = value.ToString();
@@ -125,7 +125,7 @@ namespace XmlConverter.xml_formating_with_only_attr
         [XmlIgnore]
         public int ImagePseudocolorWindowOffset
         {
-            get => _imagePseudocolorWindowOffset;
+            get => int.Parse(_serializedAttributes["image_pseudocolor_phase"].Value);
             set
             {
                 _serializedAttributes["image_pseudocolor_window_offset"].Value = value.ToString();
@@ -135,7 +135,7 @@ namespace XmlConverter.xml_formating_with_only_attr
         [XmlIgnore]
         public int ImagePseudocolorWindowWidth
         {
-            get => _imagePseudocolorWindowWidth;
+            get => int.Parse(_serializedAttributes["image_pseudocolor_window_width"].Value);
             set
             {
                 _serializedAttributes["image_pseudocolor_window_width"].Value = value.ToString();
@@ -145,7 +145,7 @@ namespace XmlConverter.xml_formating_with_only_attr
         [XmlIgnore]
         public int ImagePseudocolor
         {
-            get => _imagePseudocolor;
+            get => int.Parse(_serializedAttributes["image_pseudo_color"].Value);
             set
             {
                 _serializedAttributes["image_pseudo_color"].Value = value.ToString();
@@ -155,7 +155,7 @@ namespace XmlConverter.xml_formating_with_only_attr
         [XmlIgnore]
         public int ImageDrawingsVisible
         {
-            get => _imageDrawingsVisible;
+            get => int.Parse(_serializedAttributes["image_drawings_visible"].Value);
             set
             {
                 _serializedAttributes["image_drawings_visible"].Value = value.ToString();
@@ -165,7 +165,7 @@ namespace XmlConverter.xml_formating_with_only_attr
         [XmlIgnore]
         public int ImageMeasurementsVisible
         {
-            get => _imageMeasurementsVisible;
+            get => int.Parse(_serializedAttributes["image_measurements_visible"].Value);
             set
             {
                 _serializedAttributes["image_measurements_visible"].Value = value.ToString();
@@ -175,7 +175,7 @@ namespace XmlConverter.xml_formating_with_only_attr
         [XmlIgnore]
         public int ImageImplantsVisible
         {
-            get => _imageImplantsVisible;
+            get => int.Parse(_serializedAttributes["image_implants_visible"].Value);
             set
             {
                 _serializedAttributes["image_implants_visible"].Value = value.ToString();
@@ -185,7 +185,7 @@ namespace XmlConverter.xml_formating_with_only_attr
         [XmlIgnore]
         public int ImageMarkersVisible
         {
-            get => _imageMarkersVisible;
+            get => int.Parse(_serializedAttributes["image_markers_visible"].Value);
             set
             {
                 _serializedAttributes["image_markers_visible"].Value = value.ToString();
@@ -195,7 +195,7 @@ namespace XmlConverter.xml_formating_with_only_attr
         [XmlIgnore]
         public int ImageRoisVisible
         {
-            get => _imageRoisVisible;
+            get => int.Parse(_serializedAttributes["image_rois_visible"].Value);
             set
             {
                 _serializedAttributes["image_rois_visible"].Value = value.ToString();
@@ -205,7 +205,7 @@ namespace XmlConverter.xml_formating_with_only_attr
         [XmlIgnore]
         public int ImageOrientation
         {
-            get => _imageOrientation;
+            get => int.Parse(_serializedAttributes["image_orientation"].Value);
             set
             {
                 _serializedAttributes["image_orientation"].Value = value.ToString();
