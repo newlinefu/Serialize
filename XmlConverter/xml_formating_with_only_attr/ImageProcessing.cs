@@ -27,7 +27,7 @@ namespace XmlConverter.xml_formating_with_only_attr
             Byte[] colorMapBlueChannel
         )
         {
-            this._imageElement = new ImageElement(
+            this.imageElement = new ImageElement(
                 imageTransparentPseudocolors,
                 imagePseudocolorPhase,
                 imagePseudocolorWindowOffset,
@@ -49,16 +49,10 @@ namespace XmlConverter.xml_formating_with_only_attr
         }
 
         public ImageProcessing()
-        {
-        }
+        {}
+        
+        [XmlElement("image_element", typeof(ImageElement))]
+        public ImageElement imageElement;
 
-        private ImageElement _imageElement;
-
-        [XmlElement("image_element")]
-        public ImageElement ImageElement
-        {
-            get => _imageElement;
-            set => _imageElement = value;
-        }
     }
 }

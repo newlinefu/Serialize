@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Xml.Serialization;
+using XmlConverter.utils;
 
 namespace XmlConverter.xml_formating_with_only_attr
 {
@@ -33,76 +34,56 @@ namespace XmlConverter.xml_formating_with_only_attr
         private string _type;
         private string _name;
         private string _ID;
-        private Byte[] _redChannel;
-        private Byte[] _greenChannel;
-        private Byte[] _blueChannel;
 
         private string _redChannelStr;
         private string _greenChannelStr;
         private string _blueChannelStr;
 
-        [XmlElement("RedChannel")]
+        [XmlElement("RedChannel", typeof(string))]
         public string RedChannelStr
         {
             get => _redChannelStr;
             set
             {
-                byte[] newRCh = new byte[value.Length / 4];
-                for (int i = 0; i < value.Length - 4; i += 4)
-                {
-                    newRCh[i / 4] = Convert.ToByte(value.Substring(i, 4), 16);
-                }
-
-                _redChannel = newRCh;
+                _redChannelStr = value;
             }
         }
 
-        [XmlElement("GreenChannel")]
+        [XmlElement("GreenChannel", typeof(string))]
         public string GreenChannelStr
         {
             get => _greenChannelStr;
             set
             {
-                byte[] newGCh = new byte[value.Length / 4];
-                for (int i = 0; i < value.Length - 4; i += 4)
-                {
-                    newGCh[i / 4] = Convert.ToByte(value.Substring(i, 4), 16);
-                }
-
-                _greenChannel = newGCh;
+                _greenChannelStr = value;
             }
         }
 
-        [XmlElement("BlueChannel")]
+        [XmlElement("BlueChannel", typeof(string))]
         public string BlueChannelStr
         {
             get => _blueChannelStr;
             set
             {
-                byte[] newBCh = new byte[value.Length / 4];
-                for (int i = 0; i < value.Length - 4; i += 4)
-                {
-                    newBCh[i / 4] = Convert.ToByte(value.Substring(i, 4), 16);
-                }
-
-                _blueChannel = newBCh;
+                _blueChannelStr = value;
             }
         }
         
-        [XmlElement("colormap_type")] 
+        [XmlElement("colormap_type", typeof(string))] 
         public string Type
         {
             get => _type;
             set => _type = value;
         }
-        [XmlElement("colormap_name")] 
+        
+        [XmlElement("colormap_name", typeof(string))] 
         public string Name
         {
             get => _name;
             set => _name = value;
         }
 
-        [XmlElement("colormap_ID")] 
+        [XmlElement("colormap_ID", typeof(string))] 
         public string Id
         {
             get => _ID;
@@ -112,50 +93,39 @@ namespace XmlConverter.xml_formating_with_only_attr
         [XmlIgnore]
         public byte[] RedChannel
         {
-            get => _redChannel;
+            get
+            {
+                return _redChannelStr.ToByteArrayExt();
+            }
             set
             {
-                _redChannel = value;
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < value.Length; i++)
-                {
-                    sb.Append(value[i].ToString("X4"));
-                }
-
-                _redChannelStr = sb.ToString();
+                _redChannelStr = value.ToHexString();
             }
         }
 
         [XmlIgnore]
         public byte[] GreenChannel
         {
-            get => _greenChannel;
+            get
+            {
+                return _greenChannelStr.ToByteArrayExt();
+            }
             set
             {
-                _greenChannel = value;
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < value.Length; i++)
-                {
-                    sb.Append(value[i].ToString("X4"));
-                }
-
-                _greenChannelStr = sb.ToString();
+                _greenChannelStr = value.ToHexString();
             }
         }
 
         [XmlIgnore]
         public byte[] BlueChannel
         {
-            get => _blueChannel;
+            get
+            {
+                return _blueChannelStr.ToByteArrayExt();
+            }
             set
             {
-                _blueChannel = value;
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < value.Length; i++)
-                {
-                    sb.Append(value[i].ToString("X4"));
-                }
-                _blueChannelStr = sb.ToString();
+                _blueChannelStr = value.ToHexString();
             }
         }
     }

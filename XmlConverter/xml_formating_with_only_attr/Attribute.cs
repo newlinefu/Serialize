@@ -16,15 +16,18 @@ namespace XmlConverter.xml_formating_with_only_attr
             _name = name;
             _type = type;
         }
+        
+        public Attribute(string value, string name) : this(value, name, null)
+        {}
 
-        [XmlAttribute("name")]
+        [XmlAttribute("name", typeof(string))]
         public string Name
         {
             get => _name;
             set { _name = value; }
         }
 
-        [XmlAttribute("type")]
+        [XmlAttribute("type", typeof(string))]
         public string Type
         {
             get => _type;
