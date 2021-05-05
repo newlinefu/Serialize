@@ -12,7 +12,8 @@ namespace XmlConverter.xml_formating_with_only_attr
 
         public Image()
         {
-            
+            this.generalImageInfo = new GeneralImageInfo();
+            this.imageProcessing = new ImageProcessing();
         }
 
         public Image(
@@ -39,13 +40,13 @@ namespace XmlConverter.xml_formating_with_only_attr
             Byte[] colorMapBlueChannel
         )
         {
-            this.GeneralImageInfo = new GeneralImageInfo(
+            this.generalImageInfo = new GeneralImageInfo(
                 title,
                 modality,
                 source,
                 timeOfImage
             );
-            this.ImageElement = new ImageProcessing(
+            this.imageProcessing = new ImageProcessing(
                 imageTransparentPseudocolors,
                 imagePseudocolorPhase,
                 imagePseudocolorWindowOffset,
@@ -66,10 +67,42 @@ namespace XmlConverter.xml_formating_with_only_attr
             );
         }
         
-        [XmlElement(typeof(GeneralImageInfo))]
-        public GeneralImageInfo GeneralImageInfo;
+        [XmlElement("general", typeof(GeneralImageInfo))]
+        public GeneralImageInfo generalImageInfo;
         
-        [XmlElement(typeof(ImageProcessing))]
-        public ImageProcessing ImageElement;
+        [XmlElement("image_processing", typeof(ImageProcessing))]
+        public ImageProcessing imageProcessing;
+
+        public static bool operator ==(Image i1, Image i2)
+        {
+            if (object.Equals(i1, i2))
+            {
+                return true;
+            }
+
+            if (object.Equals(i1, null) || object.Equals(i2, null))
+            {
+                return false;
+            }
+
+            return i1.imageProcessing == i2.imageProcessing &&
+                   i1.generalImageInfo == i2.generalImageInfo;
+        }
+        
+        public static bool operator !=(Image i1, Image i2)
+        {
+            if (object.Equals(i1, i2))
+            {
+                return false;
+            }
+
+            if (object.Equals(i1, null) || object.Equals(i2, null))
+            {
+                return true;
+            }
+            
+            return !(i1.imageProcessing == i2.imageProcessing &&
+                    i1.generalImageInfo == i2.generalImageInfo);
+        }
     }
 }

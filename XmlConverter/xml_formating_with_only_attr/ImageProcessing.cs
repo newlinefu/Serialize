@@ -49,10 +49,43 @@ namespace XmlConverter.xml_formating_with_only_attr
         }
 
         public ImageProcessing()
-        {}
+        {
+            imageElement = new ImageElement();
+        }
         
         [XmlElement("image_element", typeof(ImageElement))]
         public ImageElement imageElement;
+
+        public static bool operator ==(ImageProcessing ip1, ImageProcessing ip2)
+        {
+            if (object.Equals(ip1, ip2))
+            {
+                return true;
+            }
+
+            if (object.Equals(ip1, null) || object.Equals(ip2, null))
+            {
+                return false;
+            }
+
+            return ip1.imageElement == ip2.imageElement;
+        }
+        
+        public static bool operator !=(ImageProcessing ip1, ImageProcessing ip2)
+        {
+            if (object.Equals(ip1, ip2))
+            {
+                return false;
+            }
+
+            if (object.Equals(ip1, null) || object.Equals(ip2, null))
+            {
+                return true;
+            }
+            
+            return ip1.imageElement != ip2.imageElement;
+        }
+
 
     }
 }

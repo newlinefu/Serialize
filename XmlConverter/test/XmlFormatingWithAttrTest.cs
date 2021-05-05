@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Xml;
+using System.IO;
+using System.Xml.Serialization;
 using NUnit.Framework;
 using XmlConverter.xml_formating_with_only_attr;
 
@@ -9,7 +10,7 @@ namespace XmlConverter.test
     public class XmlFormatingWithAttrTest
     {
         [Test]
-        public void SerDesTest()
+        public void SerDesTestWithAttributes()
         {
             Image primaryImage = new Image(
                 "test_title",
@@ -35,6 +36,22 @@ namespace XmlConverter.test
                 new byte[] {10, 11, 12, 13, 14}
             );
             
+            
+            var xmlSer = new XmlSerializer(primaryImage.GetType());
+
+            using (Stream s = File.Create("int_xml_2.xml"))
+            {
+                xmlSer.Serialize(s, primaryImage);
+            }
+
+            Image resultedImage;
+            using (Stream s = File.OpenRead("int_xml_2.xml"))
+            {
+                resultedImage = (Image) xmlSer.Deserialize(s);
+            }
+            
+            Assert.IsTrue(primaryImage == resultedImage);
+            Assert.IsFalse(primaryImage != resultedImage);
         }
         
     }
